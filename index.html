@@ -1,41 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CodeQueue - Squad Up Instantly 😎</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeQueue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="script.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: url('bg.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    header {
+      position: relative;
+      text-align: center;
+      padding: 50px 20px;
+      background: rgba(0,0,0,0.5);
+    }
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3em;
+      text-shadow: 2px 2px #000;
+    }
+    #time {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+    main {
+      text-align: center;
+      margin-top: 50px;
+    }
+    input { padding: 10px; margin: 5px; border-radius: 5px; }
+    button { padding: 10px 20px; margin: 5px; border-radius: 5px; cursor: pointer; }
+    #tips {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9em;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      background: rgba(0,0,0,0.5);
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    .online-dot {
+      color: #0f0;
+      font-weight: bold;
+      animation: pulse 1s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+  </style>
 </head>
 <body>
 
 <header>
-    <h1>CodeQueue 🎮</h1>
-    <p>Find players & matches instantly!</p>
-    <div id="local-time"></div>
+  <h1>CodeQueue</h1>
+  <div id="time"></div>
 </header>
 
 <main>
-    <section id="post-form">
-        <h2>Post Your Game Info</h2>
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="text" id="game" placeholder="Game (e.g. eFootball, CODM)" required>
-        <input type="text" id="rank" placeholder="Rank / Level" required>
-        <input type="text" id="matchcode" placeholder="Match Code (if any)">
-        <button id="post-btn">Post Info</button>
-    </section>
-
-    <section id="queue">
-        <h2>Available Players</h2>
-        <ul id="queue-list">
-            <li>No players yet 😔</li>
-        </ul>
-    </section>
+  <h2>Submit a Game Code</h2>
+  <input type="text" id="playerName" placeholder="Your Name">
+  <input type="text" id="gameCode" placeholder="Game Code">
+  <br>
+  <button id="submitBtn">Submit</button>
+  <button id="showBtn">Show Codes</button>
+  <div id="onlineStatus"></div>
 </main>
 
+<div id="tips"></div>
+
 <footer>
-    <p>Contact: charlesweston706@gmail.com</p>
+  Stay safe & enjoy gaming! 🎮
 </footer>
 
-<script src="script.js"></script>
+<script>
+  // Live Time
+  function updateTime() {
+    const now = new Date();
+    document.getElementById('time').innerText = now.toLocaleString();
+  }
+  setInterval(updateTime, 1000);
+  updateTime();
+
+  // Rotating tips
+  const tips = [
+    "Tip: Play fair 😎",
+    "Tip: Use teamwork 💪",
+    "Tip: Stay hydrated 🥤",
+    "Tip: Try new strategies 🚀",
+    "Tip: Keep your code handy 📝",
+    "Tip: Invite friends for fun 🎉"
+  ];
+  let tipIndex = 0;
+  function rotateTips() {
+    document.getElementById('tips').innerText = tips[tipIndex];
+    tipIndex = (tipIndex + 1) % tips.length;
+  }
+  setInterval(rotateTips, 15000); // every 15 seconds
+  rotateTips();
+
+  // Example online indicator
+  function showOnline() {
+    const onlineDiv = document.getElementById('onlineStatus');
+    onlineDiv.innerHTML = '<span class="online-dot">🟢 Online Users</span>';
+  }
+  showOnline();
+</script>
+
 </body>
 </html>
