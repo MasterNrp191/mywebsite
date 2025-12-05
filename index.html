@@ -1,74 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MasterNrp191 - Free Fire Zone 😎</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #1f1c2c, #928dab);
-            color: #fff;
-            text-align: center;
-        }
-        header {
-            padding: 50px 20px;
-            background: rgba(0,0,0,0.5);
-        }
-        h1 {
-            font-size: 3em;
-            margin: 0.2em 0;
-            text-shadow: 2px 2px #000;
-        }
-        p {
-            font-size: 1.2em;
-        }
-        .button {
-            display: inline-block;
-            margin: 20px;
-            padding: 15px 30px;
-            background: #ff4c4c;
-            color: #fff;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 10px;
-            transition: transform 0.2s;
-        }
-        .button:hover {
-            transform: scale(1.1);
-            background: #ff0000;
-        }
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            background: rgba(0,0,0,0.5);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MasterNrp191's Personal Hub 😎</title>
+<style>
+/* Reset and basic styles */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: url('bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    min-height: 100vh;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+
+header { padding:60px 20px; }
+
+h1 { font-size:3em; text-shadow:2px 2px #000; margin-bottom:10px; }
+h2 { font-size:2em; margin:30px 0 10px 0; }
+p { font-size:1.2em; margin:8px 0; }
+
+.button {
+    display:inline-block;
+    margin:15px;
+    padding:12px 25px;
+    background: linear-gradient(45deg, #ff4c4c, #ff9900);
+    color:#fff;
+    font-weight:bold;
+    text-decoration:none;
+    border-radius:12px;
+    box-shadow:2px 2px 10px rgba(0,0,0,0.5);
+    transition: transform 0.3s, background 0.3s;
+}
+.button:hover {
+    transform:scale(1.1);
+    background:linear-gradient(45deg,#ff0000,#ffcc00);
+}
+
+section { padding:50px 20px; }
+footer { padding:20px; background:rgba(0,0,0,0.6); }
+
+#time { font-size:2em; margin-top:20px; font-weight:bold; }
+
+@media(max-width:600px){
+    h1{font-size:2em;} h2{font-size:1.5em;}
+    .button{padding:10px 20px; margin:10px;}
+    #time{font-size:1.5em;}
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to MasterNrp191's Free Fire Zone 😎🔥</h1>
-        <p>Worldwide gaming hub. Show your skills, flex, and dominate!</p>
-        <a class="button" href="#games">Join the Squad</a>
-        <a class="button" href="#highlights">Highlights</a>
-    </header>
 
-    <main>
-        <section id="games">
-            <h2>Top Games & Moments</h2>
-            <p>Check out my best Free Fire matches and strategies.</p>
-        </section>
+<header>
+<h1>MasterNrp191 😎</h1>
+<p>Email: charlesmkonyi87@gmail.com</p>
+<p>Location: Tanzania 🇹🇿</p>
+<p>DM if you need help ⚡</p>
+<p>eFootball username: Masterplaypes</p>
+<div id="time"></div>
+<p id="greeting"></p>
+<p id="season"></p>
+<a class="button" href="#info">Scroll Down</a>
+</header>
 
-        <section id="highlights">
-            <h2>Highlights</h2>
-            <p>Latest victories, epic kills, and toxic flex moments 😎</p>
-        </section>
-    </main>
+<main>
+<section id="info">
+<h2>Welcome!</h2>
+<p>This is my personal hub. Chill, relax, enjoy 😶🔥</p>
+</section>
+</main>
 
-    <footer>
-        <p>&copy; 2025 MasterNrp191. All rights reserved.</p>
-    </footer>
+<footer>
+<p>&copy; 2025 MasterNrp191. All rights reserved.</p>
+</footer>
+
+<script>
+// Live local time & greeting
+function updateTime() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2,'0');
+    const seconds = now.getSeconds().toString().padStart(2,'0');
+    document.getElementById('time').innerText = `${hours}:${minutes}:${seconds}`;
+
+    let greeting = '';
+    if(hours < 12) greeting = 'Good morning ☀️';
+    else if(hours < 18) greeting = 'Good afternoon 🌤️';
+    else greeting = 'Good evening 🌙';
+    document.getElementById('greeting').innerText = greeting;
+
+    const month = now.getMonth();
+    if(month === 11) document.getElementById('season').innerText = 'Happy Christmas 🎄🎅✨';
+    else document.getElementById('season').innerText = '';
+}
+setInterval(updateTime, 1000);
+updateTime();
+</script>
+
 </body>
 </html>
