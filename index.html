@@ -2,162 +2,168 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Master Portal 🔥</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Master191 Personal Page 😎</title>
+
 <style>
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    color: #fff;
-    text-align: center;
-    background: url('https://raw.githubusercontent.com/MasterNrp191/mywebsite/main/bg.jpeg') no-repeat center center fixed;
-    background-size: cover;
-}
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        text-align: center;
+        background: url('https://raw.githubusercontent.com/MasterNrp191/mywebsite/refs/heads/main/bg.jpeg') no-repeat center center fixed;
+        background-size: cover;
+        animation: fadeIn 2s ease-in-out;
+    }
 
-header {
-    padding: 50px 20px;
-    background: rgba(0,0,0,0.5);
-    box-shadow: 0 0 20px rgba(0,0,0,0.7);
-}
-h1 {
-    font-size: 3em;
-    margin: 0.2em 0;
-    text-shadow: 2px 2px #000;
-}
-#greeting {
-    font-size: 1.5em;
-    margin: 10px 0;
-    text-shadow: 1px 1px #000;
-}
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
 
-.main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 30px 20px;
-    gap: 20px;
-}
+    .overlay {
+        background: rgba(0,0,0,0.50);
+        min-height: 100vh;
+        padding: 30px;
+    }
 
-.info-box {
-    background: rgba(0,0,0,0.6);
-    border: 2px solid #ff4c4c;
-    padding: 20px 30px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 0 20px rgba(255, 76, 76, 0.7);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-.info-box:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px #ff0000;
-}
-.info-box h2 {
-    margin-top: 0;
-    color: #ff4c4c;
-}
-.info-box p {
-    margin: 5px 0;
-}
+    h1 {
+        margin-top: 40px;
+        font-size: 42px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-shadow: 0 0 15px #000;
+        animation: glow 3s infinite alternate;
+    }
 
-#dynamic-tip {
-    font-weight: bold;
-    font-size: 1.2em;
-    color: #00ffea;
-    text-shadow: 1px 1px #000;
-}
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #000; }
+        to { text-shadow: 0 0 25px #fff; }
+    }
 
-footer {
-    margin-top: 50px;
-    padding: 20px;
-    background: rgba(0,0,0,0.5);
-    box-shadow: 0 -5px 20px rgba(0,0,0,0.7);
-}
+    .section {
+        background: rgba(255,255,255,0.07);
+        padding: 20px;
+        margin: 25px auto;
+        width: 90%;
+        max-width: 600px;
+        border-radius: 16px;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 0 12px rgba(0,0,0,0.4);
+        animation: fadeInUp 1.2s ease-out;
+    }
 
-#time {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin: 10px 0;
-}
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .button {
+        display: inline-block;
+        padding: 12px 25px;
+        margin-top: 10px;
+        background: #ffffff22;
+        color: white;
+        border-radius: 10px;
+        text-decoration: none;
+        backdrop-filter: blur(5px);
+        transition: 0.3s;
+    }
+
+    .button:hover {
+        background: #ffffff55;
+        transform: scale(1.05);
+    }
+
+    #tips {
+        margin-top: 10px;
+        font-size: 14px;
+        opacity: 0.8;
+        animation: fadeTip 1s;
+    }
+
+    @keyframes fadeTip {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
 </style>
 </head>
+
 <body>
+<div class="overlay">
 
-<header>
-<h1>Master191 Personal Page 😎</h1>
-<p id="greeting">Hello!</p>
-<p id="time"></p>
-</header>
+    <h1>MASTER REALM 👑🔥</h1>
 
-<main class="main-container">
-    <div class="info-box">
-        <h2>Free Fire</h2>
-        <p>Username: <strong>MasterNrp191</strong></p>
-        <p>Show your skills and dominate the squad!</p>
-    </div>
-    
-    <div class="info-box">
-        <h2>eFootball</h2>
-        <p>Username: <strong>MasterPlayPes</strong></p>
-        <p>Top plays and epic wins!</p>
-    </div>
-    
-    <div class="info-box">
-        <h2>Contact</h2>
-        <p>Email: <strong>your-email@example.com</strong></p>
-        <p>DM if you need help ✉️</p>
+    <div class="section">
+        <h2 id="greeting">Welcome...</h2>
+        <p id="time"></p>
+        <p id="season"></p>
     </div>
 
-    <div class="info-box" id="dynamic-box">
-        <p id="dynamic-tip"></p>
+    <div class="section">
+        <h2>🎮 Gamer Info</h2>
+        <p><strong>Free Fire:</strong> MasterNrp191</p>
+        <p><strong>eFootball:</strong> MasterPlayPes</p>
     </div>
-</main>
 
-<footer>
-<p>&copy; 2025 Master191. All rights reserved.</p>
-</footer>
+    <div class="section">
+        <h2>📬 Contact</h2>
+        <a class="button" href="#" onclick="window.location='mailto:'+'charlesweston706'+'@'+'gmail.com'">Email Me</a>
+        <p id="tips">Tip loading…</p>
+    </div>
+
+</div>
 
 <script>
-// Live time and greeting
+// LIVE TIME
 function updateTime() {
     const now = new Date();
-    const hours = now.getHours();
-    const mins = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0');
-    document.getElementById('time').innerText = `${hours}:${mins}:${seconds}`;
-
-    let greeting = "Hello!";
-    if(hours >= 5 && hours < 12) greeting = "Good morning 😎";
-    else if(hours >= 12 && hours < 18) greeting = "Good afternoon ☀️";
-    else if(hours >= 18 && hours < 22) greeting = "Good evening 🌙";
-    else greeting = "Good night 💤";
-    document.getElementById('greeting').innerText = greeting;
-
-    if(now.getMonth() === 11) {
-        document.getElementById('dynamic-tip').innerText = "🎄 Happy December & Merry Christmas! 🎅";
-    }
+    document.getElementById("time").innerHTML =
+        "Your Local Time: " + now.toLocaleTimeString();
 }
 setInterval(updateTime, 1000);
 updateTime();
 
-// Dynamic "Top Moves / Pro Tip" text
+// GREETING
+function updateGreeting() {
+    const hour = new Date().getHours();
+    let text = "Welcome";
+
+    if (hour < 12) text = "Good Morning Lad 🌅";
+    else if (hour < 18) text = "Good Afternoon 😎";
+    else text = "Good Evening King 🌙🔥";
+
+    document.getElementById("greeting").innerHTML = text;
+}
+updateGreeting();
+
+// SEASONAL MESSAGE
+document.getElementById("season").innerHTML = 
+    "🎄 Happy December — Stay Frosty ❄️🔥";
+
+// ROTATING TIPS
 const tips = [
-    "💥 Pro Tip: Always check your flanks in Free Fire!",
-    "⚽ eFootball Strategy: Perfect your passing combos!",
-    "🔥 Hot Move: Surprise attack from high ground!",
-    "😎 Stay Calm: Focus > Panic!",
-    "🎯 Aim for the head in close combat!",
-    "🏆 Daily Challenge: Try a new squad tactic!"
+    "Stay sharp. Legends don’t sleep 😎",
+    "GGs only 🔥",
+    "Stay grinding. Greatness loading…",
+    "Touch grass sometimes 🌱😂",
+    "Master191 approves this site 👑",
+    "Kudos if you're still scrolling 😎",
 ];
 
-function updateTip() {
-    const tip = tips[Math.floor(Math.random() * tips.length)];
-    document.getElementById('dynamic-tip').innerText = tip;
+function rotateTip() {
+    const random = tips[Math.floor(Math.random() * tips.length)];
+    const tip = document.getElementById("tips");
+    tip.style.animation = "none";
+    void tip.offsetWidth;
+    tip.style.animation = "fadeTip 1s";
+    tip.innerHTML = random;
 }
 
-setInterval(updateTip, 5000); // change every 5 seconds
-updateTip();
+setInterval(rotateTip, 15000);
+rotateTip();
+
 </script>
 
 </body>
