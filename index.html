@@ -3,159 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CodeQueue - eFootball Match Finder</title>
-<style>
-    /* GENERAL STYLING */
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background: url('bg.jpeg') no-repeat center center fixed;
-        background-size: cover;
-        color: #fff;
-    }
-    /* TIME TOP-RIGHT */
-    #time {
-        position: fixed;
-        top: 10px;
-        right: 20px;
-        font-size: 0.9em;
-        font-weight: bold;
-        background: rgba(0,0,0,0.5);
-        padding: 5px 10px;
-        border-radius: 5px;
-    }
-    /* GREETING */
-    #greeting {
-        text-align: center;
-        margin-top: 50px;
-        font-size: 1.2em;
-        font-weight: 500;
-        text-shadow: 1px 1px 3px #000;
-    }
-    /* MAIN PROJECT SECTION */
-    #codequeue {
-        background: rgba(0,0,0,0.6);
-        margin: 50px auto;
-        padding: 30px;
-        max-width: 600px;
-        border-radius: 10px;
-        text-align: center;
-    }
-    #codequeue h1 {
-        font-size: 1.8em;
-        margin-bottom: 10px;
-    }
-    #codequeue p {
-        font-size: 1em;
-        margin-bottom: 20px;
-    }
-    #codequeue input {
-        padding: 10px;
-        width: 60%;
-        border: none;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-    #codequeue button {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        background: #ff4c4c;
-        color: #fff;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.2s;
-    }
-    #codequeue button:hover {
-        transform: scale(1.05);
-        background: #ff0000;
-    }
-    /* TIPS SECTION */
-    #tips {
-        text-align: center;
-        margin-top: 30px;
-        font-size: 0.95em;
-        font-style: italic;
-        min-height: 24px;
-        transition: opacity 1s;
-    }
-    /* FOOTER */
-    footer {
-        text-align: center;
-        margin-top: 60px;
-        padding: 10px;
-        font-size: 0.85em;
-        background: rgba(0,0,0,0.5);
-    }
-</style>
+<title>CodeQueue - Squad Up Instantly 😎</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="time"></div>
+<header>
+    <h1>CodeQueue 🎮</h1>
+    <p>Find players & matches instantly!</p>
+    <div id="local-time"></div>
+</header>
 
-<div id="greeting">Welcome, Player.</div>
+<main>
+    <section id="post-form">
+        <h2>Post Your Game Info</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="text" id="game" placeholder="Game (e.g. eFootball, CODM)" required>
+        <input type="text" id="rank" placeholder="Rank / Level" required>
+        <input type="text" id="matchcode" placeholder="Match Code (if any)">
+        <button id="post-btn">Post Info</button>
+    </section>
 
-<div id="codequeue">
-    <h1>CodeQueue - eFootball Match Finder</h1>
-    <p>The easiest way to find eFootball opponents. Submit your code, wait for a player, start the match.</p>
-    <input type="text" id="matchCode" placeholder="Enter Match Code">
-    <br>
-    <button onclick="submitCode()">Submit Code</button>
-    <p id="submitted"></p>
-</div>
-
-<div id="tips"></div>
+    <section id="queue">
+        <h2>Available Players</h2>
+        <ul id="queue-list">
+            <li>No players yet 😔</li>
+        </ul>
+    </section>
+</main>
 
 <footer>
-    Contact: <a href="mailto:charlesweston706@gmail.com" style="color:#fff;">charlesweston706@gmail.com</a>
+    <p>Contact: charlesweston706@gmail.com</p>
 </footer>
 
-<script>
-    // LIVE TIME
-    function updateTime() {
-        const now = new Date();
-        const h = now.getHours().toString().padStart(2,'0');
-        const m = now.getMinutes().toString().padStart(2,'0');
-        const s = now.getSeconds().toString().padStart(2,'0');
-        document.getElementById('time').textContent = `${h}:${m}:${s}`;
-    }
-    setInterval(updateTime, 1000);
-    updateTime();
-
-    // TIPS ROTATION
-    const tipsArray = [
-        "Share your match codes only with trusted players.",
-        "Refresh your match code if no one joins.",
-        "Be respectful during friendly matches.",
-        "Check your team strength before inviting someone.",
-        "Stay fair — no rage quitting."
-    ];
-    let tipIndex = 0;
-    function rotateTips() {
-        const tipsDiv = document.getElementById('tips');
-        tipsDiv.style.opacity = 0;
-        setTimeout(() => {
-            tipsDiv.textContent = tipsArray[tipIndex];
-            tipsDiv.style.opacity = 1;
-            tipIndex = (tipIndex + 1) % tipsArray.length;
-        }, 1000);
-    }
-    setInterval(rotateTips, 8000);
-    rotateTips();
-
-    // TEMPORARY MATCH CODE SUBMISSION
-    function submitCode() {
-        const codeInput = document.getElementById('matchCode');
-        const submitted = document.getElementById('submitted');
-        if(codeInput.value.trim() === "") {
-            submitted.textContent = "Please enter a match code.";
-            return;
-        }
-        submitted.textContent = `Your match code "${codeInput.value}" has been submitted!`;
-        codeInput.value = "";
-    }
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
