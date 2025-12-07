@@ -1,46 +1,51 @@
-const postBtn = document.getElementById('post-btn');
-const queueList = document.getElementById('queue-list');
+cat > script.js << 'EOF'
+/* live date/time and motivation rotation */
+(function(){
+  const timeEl = document.getElementById('live-time');
+  const dateEl = document.getElementById('live-date');
+  const yearEl = document.getElementById('year');
+  const seasonNote = document.getElementById('season-note');
+  const motBox = document.getElementById('motivationBox');
+  const nextBtn = document.getElementById('nextMotivation');
 
-// Function to show local time
-function updateTime() {
+  // Motivations - add as many as you want
+  const motivations = [
+    "Small steps every day beat big plans you never start.",
+    "Practice, repeat, improve — you're getting better.",
+    "Focus today: one thing. Master it.",
+    "Mistakes are proof you're trying. Keep going.",
+    "Proud moments come after the grind — you got this."
+  ];
+
+  let mIndex = 0;
+
+  function updateDateTime(){
     const now = new Date();
-    document.getElementById('local-time').textContent = now.toLocaleString();
-}
-setInterval(updateTime, 1000);
-updateTime();
+    const d = now.toLocaleDateString();
+    const t = now.toLocaleTimeString();
+    dateEl.textContent = d;
+    timeEl.textContent = t;
+    yearEl.textContent = now.getFullYear();
 
-// Store players locally for now
-let players = [];
-
-postBtn.addEventListener('click', () => {
-    const username = document.getElementById('username').value.trim();
-    const game = document.getElementById('game').value.trim();
-    const rank = document.getElementById('rank').value.trim();
-    const matchcode = document.getElementById('matchcode').value.trim();
-
-    if(!username || !game || !rank) {
-        alert("Fill all required fields!");
-        return;
+    // Seasonal/merry christmas message for December
+    if(now.getMonth() === 11){ // 0=Jan ... 11=Dec
+      seasonNote.textContent = "Merry Christmas — rest, recharge, return stronger 🎄";
+    } else {
+      seasonNote.textContent = "Keep studying, keep improving.";
     }
+  }
 
-    const playerInfo = `${username} | ${game} | ${rank} ${matchcode ? '| Code: '+matchcode : ''}`;
-    players.push(playerInfo);
+  function showMotivation(){
+    motBox.textContent = motivations[mIndex];
+    mIndex = (mIndex + 1) % motivations.length;
+  }
 
-    updateQueue();
-    document.getElementById('username').value = '';
-    document.getElementById('game').value = '';
-    document.getElementById('rank').value = '';
-    document.getElementById('matchcode').value = '';
-});
+  if(nextBtn) nextBtn.addEventListener('click', showMotivation);
 
-function updateQueue() {
-    queueList.innerHTML = '';
-    players.forEach(player => {
-        const li = document.createElement('li');
-        li.textContent = player;
-        queueList.appendChild(li);
-    });
-    if(players.length === 0){
-        queueList.innerHTML = '<li>No players yet 😔</li>';
-    }
-}
+  // auto rotate every 18 seconds
+  setInterval(showMotivation, 18000);
+  showMotivation();
+  setInterval(updateDateTime, 1000);
+  updateDateTime();
+})();
+EOF

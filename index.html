@@ -1,156 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CodeQueue - Play, Share & Connect</title>
-<style>
-    /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kigoma COTC • Timetable</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+  <style>
     body {
-        font-family: 'Arial', sans-serif;
-        background: linear-gradient(to right, #1f1c2c, #928dab);
-        color: #fff;
-        height: 100vh;
-        overflow-x: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #000;
+      color: #fff;
     }
-
-    header {
-        text-align: center;
-        padding: 30px 20px;
-        background: rgba(0,0,0,0.5);
+    .site-header, .site-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #111;
     }
-
-    header h1 {
-        font-size: 2.8em;
-        letter-spacing: 2px;
-        margin-bottom: 0.2em;
+    .brand { font-size: 1.5rem; font-weight: 900; }
+    .subtitle { font-weight: 300; }
+    .live-date, .live-time { font-weight: 500; }
+    .container { padding: 2rem; }
+    .hero {
+      text-align: center;
+      margin-bottom: 2rem;
     }
-
-    header #greeting {
-        font-size: 1.2em;
-        font-weight: 500;
-        color: #f0f0f0;
+    .hero-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .season-note { font-style: italic; margin-bottom: 0.5rem; }
+    .pride-badge { font-size: 0.8rem; color: #ccc; }
+    table.timetable {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      color: #fff;
     }
-
-    main {
-        flex: 1;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 20px;
-        gap: 20px;
+    table.timetable th, table.timetable td {
+      border: 1px solid #555;
+      padding: 0.5rem;
+      text-align: center;
     }
-
-    section {
-        background: rgba(0,0,0,0.5);
-        padding: 15px;
-        border-radius: 15px;
-        flex: 1;
-        max-height: 80vh;
-        overflow-y: auto;
-    }
-
-    section h2 {
-        text-align: center;
-        margin-bottom: 10px;
-        font-size: 1.5em;
-        text-decoration: underline;
-    }
-
-    .code-list, .online-list, .tips-list {
-        list-style: none;
-        padding: 5px;
-    }
-
-    li {
-        margin: 5px 0;
-        padding: 8px;
-        background: rgba(255,255,255,0.1);
-        border-radius: 8px;
-        transition: transform 0.2s, background 0.2s;
-    }
-
-    li:hover {
-        transform: scale(1.02);
-        background: rgba(255,255,255,0.2);
-    }
-
-    footer {
-        text-align: center;
-        padding: 15px;
-        background: rgba(0,0,0,0.5);
-        font-size: 0.9em;
-    }
-
-    #tips {
-        animation: fadeTips 15s infinite;
-    }
-
-    @keyframes fadeTips {
-        0%, 20% { opacity: 0; }
-        25%, 75% { opacity: 1; }
-        80%, 100% { opacity: 0; }
-    }
-
-    #bg {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        object-fit: cover;
-        opacity: 0.3;
-    }
-
-</style>
+    .break-row { background-color: #222; font-weight: bold; }
+    .motivation { margin-top: 2rem; text-align: center; }
+    .motivation-box { padding: 1rem; font-style: italic; }
+    .btn-small { margin-top: 0.5rem; padding: 0.3rem 0.8rem; cursor: pointer; }
+    .footer-left, .footer-right { font-size: 0.8rem; }
+  </style>
 </head>
 <body>
+  <header class="site-header">
+    <div class="left-head">
+      <h1 class="brand">Kigoma Clinical Officer's Training Center</h1>
+      <div class="subtitle">Semester Two • NTA Level 4 • Clinical Medicine (CMT)</div>
+    </div>
+    <div class="right-head">
+      <div id="live-date" class="live-date">--</div>
+      <div id="live-time" class="live-time">--:--:--</div>
+    </div>
+  </header>
 
-<img src="bg.jpeg" id="bg" alt="Background">
-
-<header>
-    <h1>CodeQueue - Find Your Squad</h1>
-    <div id="greeting">Welcome, Player!</div>
-</header>
-
-<main>
-    <section>
-        <h2>Live Codes</h2>
-        <ul id="codeList" class="code-list">
-            <!-- Codes will appear here -->
-        </ul>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-inner">
+        <h2 class="hero-title">Study hard. Stay kind. Become legendary.</h2>
+        <p id="season-note" class="season-note">Merry Christmas 🎄 — Keep pushing, greatness awaits!</p>
+        <div class="pride-badge">Made with pride • Practice project</div>
+      </div>
     </section>
 
-    <section>
-        <h2>Online Players 🟢</h2>
-        <ul id="onlineList" class="online-list">
-            <!-- Online users -->
-        </ul>
+    <section class="timetable-container">
+      <h2 class="title">Semester Two Timetable (Nov 2025 — Jan 2026)</h2>
+      <table class="timetable" role="table" aria-label="Semester timetable">
+        <thead>
+          <tr>
+            <th>Day / Time</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time">07:40 - 09:40</td>
+            <td>Communication Skills &amp; Customer Care<br><small>Ms. Angela</small></td>
+            <td>Computer Applications<br><small>Mr. Elisante</small></td>
+            <td>Microbiology, Parasitology &amp; Entomology<br><small>Dr. Manyanda / Ms. Angela</small></td>
+            <td>Human Physiology<br><small>Dr. Aika</small></td>
+            <td>Microbiology, Parasitology &amp; Entomology<br><small>Dr. Manyanda / Ms. Angela</small></td>
+          </tr>
+          <tr class="break-row">
+            <td colspan="6" class="break">TEA BREAK (09:40 - 10:10)</td>
+          </tr>
+          <tr>
+            <td class="time">10:10 - 12:10</td>
+            <td>Human Anatomy<br><small>Dr. Aika</small></td>
+            <td>Epidemiology &amp; Biostatistics<br><small>Dr. Herieth</small></td>
+            <td>Communication Skills &amp; Customer Care<br><small>Ms. Angela</small></td>
+            <td>Epidemiology &amp; Biostatistics<br><small>Dr. Herieth</small></td>
+            <td>Medical Ethics &amp; Professionalism<br><small>Dr. Deogratius</small></td>
+          </tr>
+          <tr class="break-row">
+            <td colspan="6" class="break">SHORT BREAK (12:10 - 12:15)</td>
+          </tr>
+          <tr>
+            <td class="time">12:15 - 14:15</td>
+            <td>Human Physiology<br><small>Dr. Aika</small></td>
+            <td>Medical Ethics &amp; Professionalism<br><small>Dr. Deogratius</small></td>
+            <td>Human Anatomy<br><small>Dr. Aika</small></td>
+            <td>Computer Applications<br><small>Mr. Elisante</small></td>
+            <td>Clinical Presentations<br><small>All</small></td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
-    <section>
-        <h2>Tips</h2>
-        <ul id="tips" class="tips-list">
-            <li>Stay hydrated while gaming 😎</li>
-            <li>Communicate with your squad clearly</li>
-            <li>Warm up before matches</li>
-            <li>Try new strategies weekly</li>
-        </ul>
-    </section>
-</main>
+    <aside class="motivation">
+      <h3>Motivation & Tips</h3>
+      <div id="motivationBox" class="motivation-box">Keep your focus sharp. Small steps daily = massive results!</div>
+      <button id="nextMotivation" class="btn-small">Next</button>
+    </aside>
+  </main>
 
-<footer>
-    Contact: charlesweston706@gmail.com
-</footer>
+  <footer class="site-footer">
+    <div class="footer-left">Practice web — Built by MasterNrp191</div>
+    <div class="footer-right" id="made-date">© <span id="year"></span></div>
+  </footer>
 
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-<script src="script.js"></script>
+  <script>
+    // Live date & time
+    function updateDateTime() {
+      const now = new Date();
+      document.getElementById('live-date').textContent = now.toLocaleDateString();
+      document.getElementById('live-time').textContent = now.toLocaleTimeString();
+      document.getElementById('year').textContent = now.getFullYear();
+    }
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
 
+    // Motivational rotation
+    const motivations = [
+      "You are stronger than you think.",
+      "Consistency beats talent every time.",
+      "Every mistake is a lesson.",
+      "Stay humble. Work hard. Shine bright.",
+      "Focus today, conquer tomorrow."
+    ];
+    let idx = 0;
+    const box = document.getElementById('motivationBox');
+    document.getElementById('nextMotivation').addEventListener('click', () => {
+      idx = (idx + 1) % motivations.length;
+      box.textContent = motivations[idx];
+    });
+  </script>
 </body>
 </html>
